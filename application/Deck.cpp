@@ -21,7 +21,8 @@ class Deck {
     public:
         void selectDeckSize(map <string, int>& gameDeck) {
             string deckSize;
-            cout << "\n\t\t\t\t\t\t\t\tSelect deck size (36/52 is default): ";
+            cout << "\n\n\n\t\t\t\t\t\t\t___________________________<Select deck size>_________________________\n"
+                    "\n\t\t\t\t\t\t\t\tSelect deck size (36/52 is default): ";
             cin >> deckSize;
 
             if (deckSize == "36") 
