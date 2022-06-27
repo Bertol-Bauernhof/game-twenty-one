@@ -309,9 +309,15 @@ private:
         cout << "\n\t\t\t===============================< Game started >=========================";
 
         int numberRound;
-        while (!listPlayers.empty() && numberRound < 6) {
+        while (!listPlayers.empty()) {
 
             numberRound++;
+            if (numberRound > 6) {
+                throwError("No winners.");
+                listPlayers.clear();
+                gameDeck.clear();
+                break;
+            }
             cout << "\n\n\t\t\t\t   ----------------------< Round " << numberRound << " >----------------------\n";
 
             for (int numberPlayer = 0; numberPlayer < listPlayers.size(); numberPlayer++) {
@@ -323,13 +329,12 @@ private:
                 ask(listPlayers.at(numberPlayer), numberPlayer);
             }
         }
-        throwError("No winners.");
     }
 
 
 public:
     /** For running the game.*/
-    void run() {
+    void launch() {
 
         string exit;
         while (exit != "n") {
