@@ -1,6 +1,6 @@
 class Player {
 private:
-    int count;
+    int count = 0;
     string faceCard;
     string name;
     int numberOfCards;
@@ -14,7 +14,7 @@ public:
         this->count = count;
     }
     void setFaceCard(string faceCard) {
-        this->faceCard += faceCard + "| ";
+        this->faceCard = faceCard;
     }
 
     // Getters

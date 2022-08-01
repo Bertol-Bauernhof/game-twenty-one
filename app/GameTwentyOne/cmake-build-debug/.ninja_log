@@ -1,0 +1,6 @@
+# ninja log v5
+8	6462	6810777012986307	CMakeFiles/GameTwentyOne.dir/main.cpp.obj	e7f19d7952bfb3eb
+6463	6730	6810777015610083	GameTwentyOne.exe	4ebb1ba8bd6c40af
+10	464	6777960439089122	CMakeFiles/GameTwentyOne.dir/Test.cpp.obj	689f364d73855f0f
+5	1170	6810782378722019	build.ninja	4ecea36fc2b0327f
+17	4894	6810714876928493	CMakeFiles/GameTwentyOne.dir/wer.cpp.obj	744121076dddd949

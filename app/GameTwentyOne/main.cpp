@@ -2,10 +2,14 @@
 #include <iostream>
 #include <bits/stdc++.h>
 #include <map>
+#include <iomanip>
+#include <windows.h>
 #include <ctime>
 
+using namespace std;
+
 int main() {
-    GameTwentyOne gameTwentyOne;
-    gameTwentyOne.launch();
+    Game game;
+    game.launch();
     return 0;
 }
