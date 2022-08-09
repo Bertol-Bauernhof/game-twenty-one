@@ -141,7 +141,7 @@ private:
         if (answer == "rules" ||  answer == "r")
             Service::readRules();
         else if (answer == "game" || answer == "g")
-            startGame();
+            start();
         else
             callMenu();
     }
