@@ -34,7 +34,7 @@ private:
             }
             if(player.getCount() > 21) {
                 isGameOver(player);
-                --numberPlayer;
+                numberPlayer--;
                 return -1;
             }
             return 1;
@@ -58,9 +58,9 @@ private:
      *  @return "true" means that a player finished the game.
      */
     bool isGameOver(Player& player) {
-        string message = Service::InformationPlayer(player)
+        string message = Service::informationPlayer(player)
                          + "\n\t\t\t\t\t\t\tGame over!";
-        Layout::closedPrint(message, "*", 62);
+        LayoutGUI::closedPrint(message, "*", 62);
         return Service::removePlayer(player, listPlayers);
     }
 
@@ -76,8 +76,8 @@ private:
             || listPlayers.size() == 1 && player.getCount() < 21) {
 
             Service::clearScreen();
-            string message = "\n\t\t\t   " + Service::InformationPlayer(player);
-            Layout::closedPrint( "Winner", message, "<>", 19);
+            string message = "\n\t\t\t   " + Service::informationPlayer(player);
+            LayoutGUI::closedPrint( "Winner", message, "<>", 19);
             cout << string(1000, '\b');
             Service::pause(1700);
             listPlayers.clear();
@@ -94,7 +94,7 @@ private:
         int numberOfPlayers;
 
         while (true) {
-            Layout::openedPrint("The creation of players", "Entering the number of players to start: ", "_", 28);
+            LayoutGUI::openedPrint("The creation of players", "Entering the number of players to start: ", "_", 28);
 
             if (!(cin >> numberOfPlayers)) {
                 Service::clearScreen();
@@ -135,7 +135,7 @@ private:
         Service::clearScreen();
 
         string answer;
-        Layout::openedPrint("Menu", "You must choose read rules or start the game (rules - 'r'/game - 'g'): ", "=", 40);
+        LayoutGUI::openedPrint("Menu", "You must choose read rules or start the game (rules - 'r'/game - 'g'): ", "=", 40);
         cin >> answer;
 
         if (answer == "rules" ||  answer == "r")
@@ -147,9 +147,11 @@ private:
     }
 
     /** Start the game*/
-    void startGame() {
+    void start() {
+
         // Creating and filling the list with players.
         fillListPlayers();
+
         // Creating and select the deck.
         deck->selectSize();
 
@@ -160,12 +162,11 @@ private:
         }
 
         Service::clearScreen();
-        Layout::openedPrint("Game started", "", "=", 28);
+        LayoutGUI::openedPrint("Game started", "", "=", 28);
 
         int numberRound;
         while (!listPlayers.empty()) {
 
-            numberRound++;
             if (numberRound > 6) {
                 Service::printException("No winners.");
                 listPlayers.clear();
@@ -173,27 +174,29 @@ private:
             }
 
             Service::pause(2000);
-            Service::clearScreen();
-            Layout::openedPrint("Round " + to_string(numberRound), "", "-", 30);
 
-            for (int numberPlayer = 0; numberPlayer < listPlayers.size(); numberPlayer++) {
+            Service::clearScreen();
+            numberRound++;
+            LayoutGUI::openedPrint("Round " + to_string(numberRound), "", "-", 30);
+
+            for (int i = 0; i < listPlayers.size(); i++) {
                 if (listPlayers.size() == 1) {
-                    isWinner(listPlayers.at(numberPlayer));
+                    isWinner(listPlayers.at(i));
                     break;
                 }
-                Layout::openedPrint(Service::InformationPlayer(listPlayers.at(numberPlayer)), "_", 64);
-                ask(listPlayers.at(numberPlayer), numberPlayer);
+
+                LayoutGUI::openedPrint(Service::informationPlayer(listPlayers.at(i)), "_", 64);
+                ask(listPlayers.at(i), i);
             }
         }
     }
 
 
 public:
-    /** For running the game.*/
     void launch() {
 
-        string exit;
-        while (exit != "n") {
+        string keyWord;
+        while (keyWord != "n") {
             cout << "\n\n\t\t\t\t\t\tPress Enter to Continue.";
 
             if (cin.get() == '\n') {
@@ -201,8 +204,8 @@ public:
                 callMenu();
             }
 
-            Layout::openedPrint("Do you want to continue the game? (yes - 'y'/no - 'n'): ", "~", 70);
-            cin >> exit;
+            LayoutGUI::openedPrint("Do you want to continue the game? (yes - 'y'/no - 'n'): ", "~", 70);
+            cin >> keyWord;
         }
         Service::clearScreen();
         cout << "\n\n\t\tDeveloper: " << Service::Developer();

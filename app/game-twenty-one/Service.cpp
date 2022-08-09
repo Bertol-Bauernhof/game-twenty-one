@@ -49,7 +49,7 @@ public:
     /** Show cards of a player.
      *  @param player
      */
-    static string InformationPlayer(Player& player) {
+    static string informationPlayer(Player& player) {
         string message = "Player '" + player.getName()
                          + "', count: " + to_string(player.getCount())
                          + ", face cards: " + player.getFaceCard();
